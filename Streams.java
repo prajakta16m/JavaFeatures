@@ -7,15 +7,19 @@ public class MyClass {
         private String name;
         private Integer salary;
         private Address add;
+        private List<Integer> mobileNums;
         
-        Employee(String n, Address a, Integer no){
+        Employee(String n, Address a, Integer no, List<Integer> nos){
             name = n;
             add = a;
             salary = no;
+            mobileNums = nos;
         }
         
         public String getName(){ return name;}
         public Address getAdd() { return add;}
+        public Integer getSalary(){ return salary; }
+        public List<Integer> getMobileNos(){ return mobileNums; }
         
         public String toString(){
             return "Employee: "+ name + " lives at "+ add + " earns = " + salary  ;
@@ -40,14 +44,19 @@ public class MyClass {
     
     public static void main(String args[]) {
         
+      
+        List<Integer> nos = new ArrayList();
+        nos.add(9766);
+        nos.add(9970);
+        
         Address a1 = new Address("pune", "mh");
-        Employee e1 = new Employee("Prajakta", a1, 10000 );
+        Employee e1 = new Employee("Prajakta", a1, 10000, nos );
         
         Address a2 = new Address("Bangalore", "karnataka");
-        Employee e2 = new Employee("Manish", a2 , 50000);
-
+        Employee e2 = new Employee("Manish", a2 , 50000, nos);
+        
         Address a3 = new Address("Chennai", "TN");
-        Employee e3 = new Employee("Preeti", a3 , 15000);
+        Employee e3 = new Employee("Preeti", a3 , 15000, nos);
         
         List<Employee> empList = Arrays.asList(e1,e2,e3);
         empList.stream().forEach(System.out::println);
@@ -61,16 +70,30 @@ public class MyClass {
         empList.stream()
             .filter(e -> e.add.getCity().toLowerCase().equals("pune"))
             .forEach(System.out::println);
-
+            
+        // min max
+        System.out.println();
+        List<Integer> list1 = Arrays.asList(5,7,3,8,2,9,1);
+        Integer max_value = list1.stream().max(Integer::compare).get();
+        System.out.println("Max value = "+max_value);
+        
+        //Find employee’s name who has min salary
+        System.out.println();
+        System.out.println("employee’s name who has min salary: ");
+        Employee minSal = empList.stream()
+            .min(Comparator.comparing(Employee::getSalary)).get();
+        System.out.println("Minimum salary = "+ minSal.getName());
+        
         // collect names of all employees in a list who have sal > 10000
         System.out.println();
-        List<String> empName = empList.stream()
+        String empName = empList.stream()
             .filter(e -> e.salary > 10000)
             .map(Employee::getName)
-            .collect(Collectors.toList());
+            .findFirst()
+            .orElseGet(null);
             
         System.out.println("List of employee names with salary > 10000 = "+empName);    
-
+        
         // sort the list based on Salary asc and desc
         System.out.println();
         List<Employee> newList =  empList.stream()
@@ -83,5 +106,14 @@ public class MyClass {
             
         System.out.println("New sorted newList1:");
         System.out.println(newList1);
+        
+        System.out.println();
+        //Find out all employee’s mobile numbers in a single List.
+        List flatList = empList.stream()
+            .map(e -> e.mobileNums)
+            .flatMap(Collection::stream)
+            .collect(Collectors.toList());
+        System.out.println(flatList);
+        
     }
 }
