@@ -45,8 +45,11 @@ public class MyClass {
         
         Address a2 = new Address("Bangalore", "karnataka");
         Employee e2 = new Employee("Manish", a2 , 50000);
+
+        Address a3 = new Address("Chennai", "TN");
+        Employee e3 = new Employee("Preeti", a3 , 15000);
         
-        List<Employee> empList = Arrays.asList(e1,e2);
+        List<Employee> empList = Arrays.asList(e1,e2,e3);
         empList.stream().forEach(System.out::println);
         
         System.out.println();
@@ -67,5 +70,18 @@ public class MyClass {
             .collect(Collectors.toList());
             
         System.out.println("List of employee names with salary > 10000 = "+empName);    
+
+        // sort the list based on Salary asc and desc
+        System.out.println();
+        List<Employee> newList =  empList.stream()
+            .sorted(Comparator.comparing(Employee::getSalary))
+            .collect(Collectors.toList());
+        
+        List<Employee> newList1 =  empList.stream()
+            .sorted(Comparator.comparing(Employee::getSalary).reversed())
+            .collect(Collectors.toList());
+            
+        System.out.println("New sorted newList1:");
+        System.out.println(newList1);
     }
 }
