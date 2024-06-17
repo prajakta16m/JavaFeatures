@@ -58,5 +58,14 @@ public class MyClass {
         empList.stream()
             .filter(e -> e.add.getCity().toLowerCase().equals("pune"))
             .forEach(System.out::println);
+
+        // collect names of all employees in a list who have sal > 10000
+        System.out.println();
+        List<String> empName = empList.stream()
+            .filter(e -> e.salary > 10000)
+            .map(Employee::getName)
+            .collect(Collectors.toList());
+            
+        System.out.println("List of employee names with salary > 10000 = "+empName);    
     }
 }
