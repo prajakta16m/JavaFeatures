@@ -15,9 +15,7 @@ public class Collectors {
        
       System.out.println(nList);
 
-        // Joining
-
-        // Find Duplicates using streams 
+        // Joining strings
         List<String> strings = Arrays.asList("Prajakta", "Hali");
   
         String nList = strings.stream()
@@ -26,6 +24,17 @@ public class Collectors {
         System.out.println(nList);
       
         // Prajakta..Hali
+
+        // GroupingBy length of strings
+        List<String> givenList = Arrays.asList("boy", "cat", "head", "race");
+      
+        Map<Integer,Set<String>> result = givenList
+        .stream()
+        .collect(Collectors.groupingBy(String::length, Collectors.toSet()));
+        
+        System.out.println(result);
+        
+        // {3=[cat, boy], 4=[head, race]}
         
     }
 }
