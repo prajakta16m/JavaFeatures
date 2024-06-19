@@ -14,6 +14,18 @@ public class Collectors {
         .filter(s -> Collections.frequency(strings, s) > 1 ).collect(Collectors.toSet());
        
       System.out.println(nList);
+
+        // Joining
+
+        // Find Duplicates using streams 
+        List<String> strings = Arrays.asList("Prajakta", "Hali");
+  
+        String nList = strings.stream()
+        .collect(Collectors.joining(".."));
+       
+        System.out.println(nList);
+      
+        // Prajakta..Hali
         
     }
 }
