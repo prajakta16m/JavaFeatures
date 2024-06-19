@@ -35,6 +35,15 @@ public class Collectors {
         System.out.println(result);
         
         // {3=[cat, boy], 4=[head, race]}
+
+        // PartitionaingBy - true false map with values as list of objects
+        Map<Boolean,List<String>> result = givenList
+        .stream()
+        .collect(Collectors.partitioningBy(s -> s.length() >3));
+        
+        System.out.println(result);
+        
+        // {false=[boy, cat], true=[head, race]}
         
     }
 }
