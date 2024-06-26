@@ -114,6 +114,23 @@ public class MyClass {
             .flatMap(Collection::stream)
             .collect(Collectors.toList());
         System.out.println(flatList);
+
+        // Collectors.collectingAndThen
+
+        System.out.println();
+        
+        Map<String,Integer> empList1 = empList.stream()
+            .filter(s -> s.getSalary() < 20000)
+            .collect(Collectors.groupingBy(
+                    Employee::getName,
+                    Collectors.collectingAndThen(
+                            Collectors.counting(), 
+                            f -> f.intValue()
+                        )
+                    )
+                );
+             
+        System.out.println(empList1);
         
     }
 }
