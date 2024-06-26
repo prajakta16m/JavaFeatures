@@ -131,6 +131,12 @@ public class MyClass {
                 );
              
         System.out.println(empList1);
+
+        // Collectors.joining
+
+        System.out.println(
+                empList.stream().map(Employee::getName).collect(Collectors.joining(","))
+            );
         
     }
 }
