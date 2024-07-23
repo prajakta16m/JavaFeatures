@@ -2,7 +2,7 @@ import java.util.*;
 import java.util.stream.*;
 
 public class CodingProblems {
-    
+    // 1: Find the duplicate strings in the sentence 
     public static void main(String args[]) {
 
       /* Find the duplicate strings in the sentence */
@@ -25,4 +25,28 @@ public class CodingProblems {
         [call=3, my=2]
       */
     }
+
+    // 2: Rotate array elements by number n starting from last element
+    public static void main1(String args[]) {
+    
+        int[] a = {1,2,3,4,5};
+        
+        int n = 2;
+        
+        int l = a.length;
+        
+        int[] result = new int[5];
+        
+        int idx = l-1;
+        for(int i=l-1; i>=0; i--){
+            int swapIndx = (i+n)%l;
+       
+            result[swapIndx] = a[i];
+          
+        }
+        
+       System.out.println(Arrays.toString(result));
+      }
+
+
 }
