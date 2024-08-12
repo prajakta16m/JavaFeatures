@@ -48,5 +48,23 @@ public class CodingProblems {
        System.out.println(Arrays.toString(result));
       }
 
+    // Given string aaabbccdddd -> output occurrence as a3b2c2d5
+    public static void main(String args[]) {
+      
+       String input = "aaabbccddddd";
+       
+       // expected output a3b3c2d5
+       
+       List<Character> list = input.chars().mapToObj(e->(char)e).collect(Collectors.toList());
+       
+       Set<String> result = list.stream()
+            .map(s ->  s+String.valueOf(Collections.frequency( list, s)) )
+            .collect(Collectors.toSet());
+    
+        System.out.println(String.join("",result));
+        
+        // output: b2d5a3c2
+        
+      }
 
 }
