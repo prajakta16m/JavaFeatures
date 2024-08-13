@@ -10,6 +10,8 @@ public class MyClass {
    int a[] = {4,6,1,5,7,8};
    
    List<Integer> list = Arrays.stream(a).boxed().collect(Collectors.toList());
+
+    System.out.println(Arrays.toString(a));
   
   
    List<Integer> result = list.stream()
