@@ -67,4 +67,26 @@ public class CodingProblems {
         
       }
 
+    // output all positive integers not present in the array
+    public static void main(String args[]) {
+      
+      int a[] = {3,6,-1,1};
+      
+      List<Integer> list =  Arrays.stream(a).boxed().collect(Collectors.toList());
+      
+      List<Integer> positiveInts = list.stream()
+                .filter(n -> n > 0)
+                .collect(Collectors.toList());
+                
+     int min = positiveInts.stream().min(Integer::compare).get();      
+     int max = positiveInts.stream().max(Integer::compare).get();   
+     
+     for(int i = min; i < max; i++) {
+         
+         if(!positiveInts.contains(i)) {
+              System.out.println(i);
+         }
+        
+     }
+
 }
