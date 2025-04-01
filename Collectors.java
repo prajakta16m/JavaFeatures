@@ -46,4 +46,24 @@ public class Collectors {
         // {false=[boy, cat], true=[head, race]}
         
     }
+
+    /*
+    * Try programiz.pro
+        [WORKING, ADMITTING]
+        'WORKING','ADMITTING'
+        'WORKING','ADMITTING'
+    */
+    public static void main(String[] args) {
+        System.out.println("Try programiz.pro");
+        
+        List<String> list = new ArrayList<>();
+        list.add("WORKING");
+        list.add("ADMITTING");
+        
+        List<String> l1 = list.stream().map(o -> "\'"+o+"\'").collect(Collectors.toList());
+        
+        System.out.println(list);
+        System.out.println(String.join(",", l1));
+        System.out.println(list.stream().map(o -> "\'"+o+"\'").collect(Collectors.joining(",")));
+    }
 }
